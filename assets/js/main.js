@@ -214,7 +214,10 @@ const getViewCount = () => {
       "Content-Type": "application/json",
     },
   };
-  fetch("http://localhost:3200/portfolio/addView", options)
+  fetch(
+    "https://protected-river-14538.herokuapp.com/portfolio/addView",
+    options
+  )
     .then((res) => res.json())
     .then((json) => {
       document.getElementById(
@@ -231,7 +234,10 @@ const addDownloadCount = () => {
       "Content-Type": "application/json",
     },
   };
-  fetch("http://localhost:3200/portfolio/addDownload", options)
+  fetch(
+    "https://protected-river-14538.herokuapp.com/portfolio/addDownload",
+    options
+  )
     .then((res) => res.json())
     .then((json) => {
       document.getElementById(
@@ -241,7 +247,7 @@ const addDownloadCount = () => {
 };
 
 const getDownloadCount = () => {
-  fetch("http://localhost:3200/portfolio/getDownloads")
+  fetch("https://protected-river-14538.herokuapp.com/portfolio/getDownloads")
     .then((res) => res.json())
     .then((json) => {
       document.getElementById(
@@ -260,7 +266,10 @@ const addResponse = (e) => {
       "Content-Type": "application/json",
     },
   };
-  fetch("http://localhost:3200/portfolio/addResponse", options)
+  fetch(
+    "https://protected-river-14538.herokuapp.com/portfolio/addResponse",
+    options
+  )
     .then((res) => res.json())
     .then((json) => {
       alert(json.message);
