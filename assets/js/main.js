@@ -111,6 +111,10 @@ let swiperPortfolio = new Swiper(".portfolio__container", {
 /*==================== TESTIMONIAL ====================*/
 let swiperTestimonial = new Swiper(".testimonial__container", {
   loop: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
   grabCursor: true,
   spaceBetween: 48,
   pagination: {
@@ -201,3 +205,92 @@ themeButton.addEventListener("click", () => {
   localStorage.setItem("selected-theme", getCurrentTheme());
   localStorage.setItem("selected-icon", getCurrentIcon());
 });
+
+const getViewCount = () => {
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ identifier: Math.random() }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  fetch("http://localhost:3200/portfolio/addView", options)
+    .then((res) => res.json())
+    .then((json) => {
+      document.getElementById(
+        "views"
+      ).innerHTML = `This portfolio has been viewed ${json.data} times`;
+    });
+};
+
+const addDownloadCount = () => {
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ identifier: Math.random() }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  fetch("http://localhost:3200/portfolio/addDownload", options)
+    .then((res) => res.json())
+    .then((json) => {
+      document.getElementById(
+        "download-resume"
+      ).innerHTML = `This resume has been downloaded ${json.data} times`;
+    });
+};
+
+const getDownloadCount = () => {
+  fetch("http://localhost:3200/portfolio/getDownloads")
+    .then((res) => res.json())
+    .then((json) => {
+      document.getElementById(
+        "download-resume"
+      ).innerHTML = `This resume has been downloaded ${json.data} times`;
+    });
+};
+
+const addResponse = (e) => {
+  e.preventDefault();
+  console.log(initialFormData);
+  const options = {
+    method: "POST",
+    body: JSON.stringify({ ...initialFormData }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  fetch("http://localhost:3200/portfolio/addResponse", options)
+    .then((res) => res.json())
+    .then((json) => {
+      alert(json.message);
+    });
+};
+
+var initialFormData = {
+  name: "",
+  email: "",
+  project: "",
+  message: "",
+};
+
+const onInput = (e) => {
+  initialFormData = {
+    ...initialFormData,
+    [e.target.name]: e.target.value,
+  };
+};
+
+getViewCount();
+getDownloadCount();
+
+document
+  .getElementById("download-btn")
+  .addEventListener("click", addDownloadCount);
+
+document.getElementById("contact-form").addEventListener("submit", addResponse);
+
+document.getElementById("input_name").addEventListener("change", onInput);
+document.getElementById("input_email").addEventListener("change", onInput);
+document.getElementById("input_project").addEventListener("change", onInput);
+document.getElementById("input_message").addEventListener("change", onInput);
