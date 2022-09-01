@@ -81,6 +81,10 @@ body.dark-theme {
   --scroll-thumb-color: hsl(var(--hue-color), 12%, 36%);
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /*========== Button Dark/Light ==========*/
 
 .nav__btns {
