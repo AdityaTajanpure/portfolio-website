@@ -218,10 +218,7 @@ const getViewCount = () => {
       "Content-Type": "application/json",
     },
   };
-  fetch(
-    "https://protected-river-14538.herokuapp.com/portfolio/addView",
-    options
-  )
+  fetch("https://web-production-53d4.up.railway.app/portfolio/addView", options)
     .then((res) => res.json())
     .then((json) => {
       document.getElementById(
@@ -239,7 +236,7 @@ const addDownloadCount = () => {
     },
   };
   fetch(
-    "https://protected-river-14538.herokuapp.com/portfolio/addDownload",
+    "https://web-production-53d4.up.railway.app/portfolio/addDownload",
     options
   )
     .then((res) => res.json())
@@ -251,7 +248,7 @@ const addDownloadCount = () => {
 };
 
 const getDownloadCount = () => {
-  fetch("https://protected-river-14538.herokuapp.com/portfolio/getDownloads")
+  fetch("https://web-production-53d4.up.railway.app/portfolio/getDownloads")
     .then((res) => res.json())
     .then((json) => {
       document.getElementById(
@@ -271,7 +268,7 @@ const addResponse = (e) => {
     },
   };
   fetch(
-    "https://protected-river-14538.herokuapp.com/portfolio/addResponse",
+    "https://web-production-53d4.up.railway.app/portfolio/addResponse",
     options
   )
     .then((res) => res.json())
